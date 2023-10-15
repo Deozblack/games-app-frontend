@@ -1,0 +1,58 @@
+<div *ngIf="!listHistory; else containerHistory">
+    <app-loader></app-loader>
+</div>
+
+<ng-template #containerHistory>
+    <div class="animate__animated animate__fadeIn">
+        <div class="flex justify-between mb-5">
+            <h2 class="font-bold text-2xl text-gray-700">Historial</h2>
+        </div>
+    
+        <hr>
+
+        <div class="w-full md:w-1/2 my-5">
+            <h2 class="pb-2">Filtro</h2>
+
+            <form class="flex gap-5" [formGroup]="searchForm" (ngSubmit)="searchHistories()">
+                <div class="flex w-full md:w-2/3">
+                    <input type="text" class="input-control" formControlName="term">
+                    <button type="submit" class="btn-danger ml-3">Buscar</button>
+                </div>
+            </form>
+        </div>
+       
+        <div class="w-full overflow-x-scroll md:overflow-x-auto">
+            <table class="w-full"> 
+                <thead class="bg-gray-200 w-full">
+                    <tr>
+                        <th class="p-3 text-left">Imagen</th>
+                        <th class="p-3 text-left">Nombre</th>
+                        <th class="p-3 text-left">Price</th>
+                        <th class="p-3 text-left">Stock</th>
+                        <th class="p-3 text-left">Fecha de creación</th> 
+                        <th class="p-3 text-left">Id producto</th> 
+                    </tr> 
+                </thead>
+                <tbody>
+                    <tr *ngFor="let history of listHistory | paginationHistory:page" class="border-b-2"> 
+                        <td class="p-3">
+                            <img class="w-28 rounded-md" src="{{history.image}}" alt="Imagen producto">
+                        </td> 
+                        <td class="">{{history.name}}</td>
+                        <td class="">{{history.price}}</td>
+                        <td class="">{{history.stock}}</td>
+                        <td class="">{{history.updatedAt | date}}</td>
+                        <td class="">{{history.productId}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div *ngIf="(listHistory | paginationHistory:page).length === 0">
+                <app-no-logs></app-no-logs>
+            </div>
+            <div class="flex justify-center gap-5 mt-5">
+                <button class="btn-primary" (click)="previousPage()">Anterior</button>
+                <button class="btn-primary" (click)="nextPage()" [disabled]="(listHistory | paginationHistory:page).length === 0">Siguiente</button>
+            </div>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,41 @@
+<div *ngIf="!product; else containerProducts">
+    <app-loader></app-loader>
+</div>
+
+<ng-template #containerProducts>
+    <div class="animate__animated animate__fadeIn">
+        <div class="flex justify-between mb-5">
+            <h2 class="font-bold text-2xl text-gray-700">Mas Sobre: {{product.name}}</h2>
+            <button routerLink="../" class="btn-danger">Regresar</button>
+        </div>
+    
+        <hr>
+    
+        <div class="w-full">
+            <div class="sm:block md:flex justify-between sm:m-0 md:m-10">
+                <div class="sm:w-full md:w-1/2 p-5">
+                    <img class="shadow-lg rounded-xl w-full" [src]="product.image" alt="Image product">
+                </div>
+                <div class="sm:w-full md:w-1/2 p-5 flex flex-col">
+                    <h3 class="font-bold text-3xl text-teal-400 mb-3">{{product.name}}</h3>
+                    <div class="w-full my-3 flex">
+                        <span class="bg-gray-600 mr-2 rounded-md text-white text-sm py-1 px-2">
+                            {{product.tag | uppercase}}
+                        </span>
+                    </div>
+                    <p class="text-justify">{{product.description}}</p>
+                    <div class="flex flex-wrap justify-start gap-5 mt-5 flex-1">
+                        <p class="font-bold">Stock: {{product.stock}}</p>
+                        <p class="font-bold">Precio: {{product.price}}</p>
+                        <p class="font-bold">SKU: {{product.sku | uppercase}}</p>
+                    </div>
+                    <div class="flex justify-start gap-5 mt-5">
+                        <button (click)="openModal('edit')" class="btn-warning">Editar</button>
+                        <button (click)="openModal('delete')" class="btn-danger">Eliminar</button>
+                        <app-dynamic-modal *ngIf="isOpen" [productData]="product"></app-dynamic-modal>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

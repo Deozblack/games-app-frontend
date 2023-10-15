@@ -1,0 +1,93 @@
+<div class="animate__animated animate__fadeIn">
+    <div class="flex justify-between mb-5">
+        <h2 class="font-bold text-2xl text-gray-700">Nuevo producto</h2>
+        <button routerLink="../" class="btn-danger">Regresar</button>
+    </div>
+    
+    <hr>
+    
+    <div class="w-full flex justify-center">
+        <div class="border-2 rounded-lg sm:w-full md:w-3/4 sm:m-0 md:m-5 bg-gray-100">
+            <form class="p-10" autocomplete="off" [formGroup]="productForm" (submit)="createProduct()">
+                
+                <div class="flex justify-around gap-3">
+                    <div class="sm:col-span-3 w-1/3">
+                        <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Nombre</label>
+                        <div class="mt-2">
+                          <input type="text" name="name" id="name" class="input-control" formControlName="name">
+                        </div>
+                        <app-error-message class="text-red-300" [form]="productForm" field="name"></app-error-message>
+                      </div>
+              
+                      <div class="sm:col-span-3 w-1/3">
+                        <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Precio</label>
+                        <div class="mt-2">
+                          <input type="number" name="price" id="price" class="input-control" formControlName="price">
+                        </div>
+                        <app-error-message class="text-red-300" [form]="productForm" field="price"></app-error-message>
+                      </div>
+
+                      <div class="sm:col-span-3 w-1/3">
+                        <label for="stock" class="block text-sm font-medium leading-6 text-gray-900">Stock</label>
+                        <div class="mt-2">
+                          <input type="number" name="stock" id="stock" class="input-control" formControlName="stock">
+                        </div>
+                        <app-error-message class="text-red-300" [form]="productForm" field="stock"></app-error-message>
+                      </div>
+
+                </div>
+    
+                <div class="flex justify-around gap-3 mt-2">
+                    <div class="col-span-full w-full">
+                        <label for="description" class="block text-sm font-medium leading-6 text-gray-900">Descripción</label>
+                        <div class="mt-2">
+                          <textarea id="description" name="description" rows="6" class="input-control" formControlName="description"></textarea>
+                        </div>
+                        <app-error-message class="text-red-300" [form]="productForm" field="description"></app-error-message>
+                    </div>
+                </div>
+    
+                <div class="flex justify-around gap-3 mt-2">
+              
+                      <div class="sm:col-span-3 w-1/2">
+                        <label for="sku" class="block text-sm font-medium leading-6 text-gray-900">SKU</label>
+                        <div class="mt-2">
+                            <input type="text" name="sku" id="sku" class="input-control" formControlName="sku">
+                        </div>
+                        <app-error-message class="text-red-300" [form]="productForm" field="sku"></app-error-message>
+                      </div>
+
+                      <div class="sm:col-span-3 w-1/2">
+                        <label for="tag" class="block text-sm font-medium leading-6 text-gray-900">Disponible para:</label>
+                        <div class="mt-2">
+                            <select id="select" name="tag" class="input-control" formControlName="tag">
+                                <option value="PS4">PS4</option>
+                                <option value="XBOX">XBOX</option>
+                                <option value="NINTENDO">NINTENDO</option>
+                            </select>
+                        </div>
+                        <app-error-message class="text-red-300" [form]="productForm" field="tag"></app-error-message>
+                    </div>
+
+                </div>
+    
+                <div class="flex justify-around gap-3 mt-2">
+                    
+                    <div class="sm:col-span-3 w-full">
+                        <label for="image" class="block text-sm font-medium leading-6 text-gray-900">Url imagen</label>
+                        <div class="mt-2">
+                            <input type="text" name="image" id="image" class="input-control" formControlName="image">
+                        </div>
+                        <app-error-message class="text-red-300" [form]="productForm" field="image"></app-error-message>
+                    </div>     
+    
+                </div>
+    
+                <div class="flex justify-center mt-5">
+                    <button type="submit" class="btn-primary">Crear producto</button>
+                </div>
+    
+            </form>
+        </div>
+    </div>
+</div>
